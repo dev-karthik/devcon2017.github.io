@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>WordDuniya Game</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="pragma" content="no-cache" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<title>Speak 2 Word-Dhuniya</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<style type="text/css">
+  .parti{font-family:arial, helvetica; text-align:center;display:block;position:absolute; color:white!important; font-size: 1.25em !important;    position: relative; font-weight: 600;}  
+
+ .textalignData{
+      padding-top: : 10px !important;
+  }
+
+  .bodyGradient{
+        background: #1c92d2;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        height:100vh;
+   }
+
+  .c0 {
+    background:#5649dc!important;
+    opacity: 0.7
+  }
+  .c1 {
+    background:#18a799 !important;
+    opacity: 0.7
+  }
+    .c2{
+    background:#f32323 !important;
+    opacity: 0.7
+  }
+    .c3{
+    opacity: 0.7
+  }
+
+    .g0{
+    height:66px !important;
+    width:66px !important;
+    border-radius: 33px !important;
+  }
+    .g1{
+    height:78px !important;
+    width:78px !important;
+    border-radius: 39px !important;
+  }
+    .g2{
+     height:88px !important;
+    width:88px !important;
+    border-radius: 44px !important;
+  }
+    .g3{
+    height:98px !important;
+    width:98px !important;
+    border-radius: 49px !important;
+  }
+    .g4{
+    height:108px !important;
+    width:108px !important;
+    border-radius: 54px !important;
+  }
+  .w3-container{
+    z-index:9999!important;
+    position: absolute;
+
+  }
+  .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.test{
+	position: absolute;
+	z-index:99999;
+	min-width: 300px;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.margin-top-10 {
+	margin-top: 10px !important;
+}
+
+.margin-top-30 {
+	margin-top: 30vh !important;
+}
+
+.cardLeftmargin-34 {
+	left: 34% !important;
+}
+
+.cardHeadingTxt{
+	font-size: 16px;
+    color: #ffffff;
+     font-weight: bold !important;
+}
+
+.card-panel {
+	background-color: rgba(0,0,0,0.1) !important;
+}
+
+.btn, .btn-large {
+    font-size: 16px !important;
+    text-decoration: none;
+    color: #fff;
+    background-color: #7cd7ce !important;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    cursor: pointer;
+    font-weight: bold !important;
+}
+
+</style>
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/jquery.moving-bubble.js"></script>
+<script type="text/javascript">
+var hel = Array('अ','उ','ई','ऋ','ಅ','ಐ','ಈ','ಋ','అ','ఐ','ఈ','ఓ');
+
+$(document).ready(function (e) {
+    //Add random divs as sample....
+    //Change numberOfDivs if you want
+    var numberOfDivs = 60;
+
+    // add x number of divs to page.
+    for (var i = 0; i < numberOfDivs; i++) {
+        var g = Math.floor(Math.random() * 5);
+        var c = Math.floor(Math.random() * 4);
+        //Create div with class c0/c3 (color) and g0/g4 (size)
+        var p = $('<div/>').addClass('c' + c).addClass('g' + g).addClass('parti');
+        var r = Math.floor(Math.random() * 12);
+        $(p).html("<p class='textalignData'>"+hel[r]+"</p>");
+        //Add object to body
+        $('body').append(p);
+    }
+
+    //This is where the magic happends!!!
+    //Add css set to none because I added display:block;position:absolute; to the css.
+    $('.parti').movingBubble({ addCss: true });
+});
+
+function next(language_code) {
+  console.log("language: "+language_code);  
+  localStorage["language_code"] = language_code;
+  //var form=document.getElementById('formName'); //this fills the form
+  var form = document.createElement("form");
+  $(document.body).append(form);
+  form.setAttribute("id", "myForm");
+  form.setAttribute('method',"get");
+  form.setAttribute('action',"final.html");
+  form.submit();
+}
+</script>
+</head>
+<body class="bodyGradient">
+    <div class="row margin-top-30 test cardLeftmargin-34">
+      <div class="col s12"><div class="card-panel">
+          <span class="cardHeadingTxt">Select your language to start the game.
+          </span>
+	       <ul id = "dropdown" class = "dropdown-content">
+	         <li><a href = "#" onclick="next('kn-IN')">Kannada</a></li>
+	         <li><a href = "#!" onclick="next('te-IN')">Telugu</a></li>
+	         <li><a href = "#" onclick="next('hi-IN')">हिन्दी - Hindi</a></li>
+	      </ul> 
+	      <div class="row margin-top-10"> 
+	       <div class="col s6 offset-s3">    
+	      	<a class = "btn dropdown-button" href = "#" data-activates = "dropdown">Language
+	         <i class = "mdi-navigation-arrow-drop-down right"></i></a>	</div></div>
+        </div>
+    </div>
+    </div>   
+<!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</body>
+</html>
+
