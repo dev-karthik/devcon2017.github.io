@@ -283,10 +283,10 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
                <span class="card-title">ORTHOGRAPHIC COMPLEXITY</span>
                <p>How difficult it is to read/write?</p>
              </div>
+             <div id="ldBar1" style="text-align: center; padding-bottom: 30px"></div>
              <div class="card-action" style="text-align: center;">
                <a href="#" id="result1"></a>
              </div>
-             <div id="ldBar1"></div>
           </div>
         </div>
         <div class="col s4">
@@ -295,10 +295,10 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
                <span class="card-title">PHONOLOGICAL COMPLEXITY</span>
                <p>How difficult it is to pronounce?</p>
              </div>
+             <div id="ldBar2" style="text-align: center; padding-bottom: 30px"></div>
              <div class="card-action" style="text-align: center;">
                <a href="#" id="result2"></a>
              </div>
-             <div id="ldBar2"></div>
           </div>
         </div>
         <div class="col s4">
@@ -446,11 +446,11 @@ function compute() {
 
       var phonicColor = 'green';
       if (totalPhonicComplexity > 200) {
-        progressOptions.color = phonicColor;
+        phonicColor = 'red';
       } else if (totalPhonicComplexity <= 200 && totalPhonicComplexity > 100) {
-        progressOptions.color = phonicColor;
+        phonicColor = 'orange';
       } else if (totalPhonicComplexity <= 100) {
-        progressOptions.color = phonicColor;
+        phonicColor = 'green';
       }
       progressOptions.color = phonicColor;
       bar2 = new ProgressBar.Line('#ldBar2', progressOptions);
