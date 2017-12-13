@@ -109,9 +109,10 @@ function validate(googleOutput){
   if(googleOutput==actual){
     console.log("succeess");
    document.getElementById("status"+(1+currentIndex)).innerHTML="SUCCESS";
-    setInterval(function(){ 
+    var timer = setInterval(function(){ 
       currentIndex++;
       $('.carousel').carousel('next');
+      clearTimeout(timer);
      }, 3000);
   }else{
     console.log("game over!");
