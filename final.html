@@ -9,6 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-store" />
 <meta http-equiv="pragma" content="no-cache" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<script src="https://use.fontawesome.com/8f8cd7f5fa.js"></script>
 <link rel="stylesheet" href="./css/buttons.css">
 <style>
   .bodyGradient{
@@ -241,8 +242,8 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
 
 <div class="row">
   <div class="col s12">      
-    <h4 class='text-center grey-text lighten-3'>
-      <a href=""><p>Language: <span id="language_code_span"></span></p></a>
+    <h4 class='text-center red-text lighten-3'>
+      <p>Language: <span id="language_code_span"></span></p>
     </h4>
   </div>
 </div>
@@ -258,7 +259,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
   <div  id="record_button" class="center">
     <button id="start_button" onclick="toggleStartStop()"><img id="start_img" src="mic2.png" alt="Start" height="90" width="90"></button>
   </div>
-  <div id="text" onclick="off()">Stop Recording</div>
+  <div id="text"><button class="button button-caution button-circle button-large" onclick="off()"><i class="fa fa-stop-circle" aria-hidden="true"></i></button></div>
   <div id="preloader_1">
     <span></span>
     <span></span>
@@ -275,8 +276,8 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
 <div id="result_card" class="container">
   <div class="row">
     <div class="col s12">      
-      <h4 class='text-center grey-text lighten-3'>
-        <a href="">Test Results</a>
+      <h4 class='text-center black-text lighten-3'>
+        Results
       </h4>
     </div>
   </div>
@@ -313,7 +314,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
                <span class="card-title">GRADE LEVEL SUITABILITY</span>
                <p>Which grade child can use this text?</p>
              </div>
-             <div style="text-align: center; padding-bottom: 15px">
+             <div style="text-align: center; padding-bottom: 47px">
               <button id="grd1Btn" class="button button-caution button-square button-small"><span class="grdBtnText">1</span></button>
               <button id="grd2Btn" class="button button-caution button-square button-small"><span class="grdBtnText">2</span></button>
               <button id="grd3Btn" class="button button-caution button-square button-small"><span class="grdBtnText">3</span></button>
