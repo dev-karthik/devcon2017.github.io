@@ -17,11 +17,6 @@
   .left {
     float: left;
   }
-  body {
-    background-image: url("akshara.jpg");
-    background-repeat: no-repeat;
-    background-position: center bottom; 
-  }
   textarea#textarea {
     width: 659px; height: 90px;
     font-family: Tahoma, sans-serif;
@@ -29,7 +24,43 @@
     min-height: 90px;
     text-align: center;
   }
+  #start_button {
+    border: 0;
+    background-color:transparent;
+    padding: 0;
+  }
+  #parent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden !important;
+    z-index: -1;
+  }
+
+  .message,.message-1 {
+    height: 120px;
+    width: 120px;
+    background-color: orange;
+    color: white;
+    z-index: -9999;
+    line-height: 115px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    border-radius: 60px;
+  }
+
 </style>
+<meta charset=utf-8 />
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-store" />
+<meta http-equiv="pragma" content="no-cache" />
 <head>
   <title>Ekstep Word Complexity Compute Demonstration</title>
 </head>
@@ -47,9 +78,24 @@
 <div class="center">
   <button id="start_button" onclick="toggleStartStop()"">
     <img id="start_img" src="record.jpg" alt="Start" height="90" width="130"></button>
-  <textarea id="textarea" cols=80 onkeydown="if(event.keyCode == 13) compute(); return false;"></textarea>  
+  <textarea id="textarea" cols=80 onkeydown="if(event.keyCode == 13){ compute(); return false;}"></textarea>  
 </div>
 <div class="center" id="result"></div>
+<div id="parent">
+    <div class="message">अ</div>
+    <div class="message">आ</div>
+    <div class="message">ई</div>
+    <div class="message">ऋ</div>
+    <div class="message">ಅ</div>
+    <div class="message">ಐ</div>
+    <div class="message">ಈ</div>
+    <div class="message">ಋ</div>
+    <div class="message">అ</div>
+    <div class="message">ఐ</div>
+    <div class="message">ఈ</div>
+    <div class="message">ఓ</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 var recognizing;
 var recognition = new webkitSpeechRecognition();
@@ -130,5 +176,45 @@ function compute() {
   };
 
 }
+
+
+jQuery.fn.verticalMarquee = function(vertSpeed, horiSpeed, index) {
+   
+    this.css('float', 'left');
+
+    vertSpeed = vertSpeed || 1;
+    horiSpeed = 1/horiSpeed || 1;
+
+    var windowH = this.parent().height(),
+        thisH = this.height(),
+        parentW = (this.parent().width() - this.width()) / 2,
+        rand = Math.random() * (index * 1000),
+        current = this;
+
+    this.css('margin-top', windowH + thisH);
+    this.parent().css('overflow', 'hidden');
+
+    setInterval(function() {
+        current.css({
+            marginTop: function(n, v) {
+                return parseFloat(v) - vertSpeed;
+            },
+            marginLeft: function(n, v) {
+                return (Math.sin(new Date().getTime() / (horiSpeed * 5000) + rand) + 1) * parentW;
+            }
+        });
+    }, 15);
+
+    setInterval(function() {
+        if (parseFloat(current.css('margin-top')) < -thisH) {
+            current.css('margin-top', windowH + thisH);
+        }
+    }, 100);
+};
+var message = 1;
+$('.message').each(function(message) {  
+    $(this).verticalMarquee(1, 1, message);
+    message++
+});
 
 </script>
