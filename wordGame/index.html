@@ -153,16 +153,15 @@ function validate(googleOutput){
     else
       document.getElementById("status"+(1+currentIndex)).innerHTML="You are right, Be prepared for next round..";
     var timer = setInterval(function(){ 
-    
-      currentIndex++;
-      $('.carousel').carousel('next');
       document.getElementById("timer"+(1+currentIndex)).innerHTML = --seconds_left;
       if (seconds_left <= 0)
       {
          document.getElementById("timer"+(1+currentIndex)).innerHTML = "You are Ready!";
          clearInterval(interval);
-      }
-      clearTimeout(timer);
+         currentIndex++;
+         $('.carousel').carousel('next');
+         clearTimeout(timer);
+      }    
      }, 1000);
   }else{
     console.log("game over!");
