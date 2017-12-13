@@ -9,9 +9,9 @@ recognition.onresult = function (event) {
     if (event.results[i].isFinal) {
       // poulate voice to text output
       //textvalue.innerHTML = event.results[i][0].transcript;
-
       console.log(actual1.innerHTML);
       console.log(event.results[i][0].transcript);
+      validate(event.results[i][0].transcript);
     }
   }
 }
