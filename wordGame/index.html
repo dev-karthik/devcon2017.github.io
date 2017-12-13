@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>The Materialize Example</title>    
+      <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel = "stylesheet" href = "./css/materialize.css">
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src = "./js/materialize.min.js"></script>
+      <script src = "./js/googleaudio.js"></script>
+
+   </head>
+  
+   <body>
+   <div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel-item teal lighten-2 white-text" href="#one!">
+      <h5 class="center"><div id="actual1">हाथी</div></h5>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+    </div>
+    <div class="carousel-item amber ligthen-2 white-text" href="#two!">
+      <h5 class="center">This should be center aligned</h5>
+      <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+    </div>
+    <div class="carousel-item green white-text" href="#three!">
+      <h5 class="center">This should be center aligned</h5>
+      <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+    </div>
+    <div class="carousel-item blue white-text" href="#four!">
+      <h5 class="center">This should be center aligned</h5>
+      <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(4)"><i class = "material-icons"><img id="start_img4" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+    </div>
+   
+  </div>
+   <div class="center">
+      <a id="btnContinue" class="waves-effect waves-light btn">next</a>
+   </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('.carousel').carousel();
+      $('.carousel').carousel('set', "#one!");
+  $("#btnContinue").click(function() {
+    $('.carousel').carousel('next');
+  });
+});
+</script>

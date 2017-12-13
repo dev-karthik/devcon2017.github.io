@@ -1,0 +1,39 @@
+<html>
+   <head>
+      <title>The Materialize Example</title>    
+      <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel = "stylesheet" href = "./css/materialize.css">
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src = "./js/materialize.min.js"></script>
+
+   </head>
+  
+   <body>
+   <div class="col s12">
+  <ul class="tabs">
+    <li class="tab col s4"><a href="#test1" class="active">tab1</a>
+    </li>
+    <li class="tab col s4"><a href="#test2">tab2</a>
+    </li>
+    <li class="tab col s4"><a href="#test4">tab3</a>
+    </li>
+  </ul>
+</div>
+
+<div id='test1' class="col s12">
+  <a id="btnContinue" href='#test2'>continue</a>
+</div>
+<div id='test2' class="col s12"></div>
+</html>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $("#btnContinue").click(function() {
+    $('.carousel').carousel();
+  });
+});
+</script>
+
+
