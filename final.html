@@ -229,6 +229,11 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
       100% {height:5px;transform:translateY(0px);background:#9b59b6;}
   }
 
+  .grdBtnText {
+    font-weight: normal;
+    font-size: 16px;
+  }
+
 </style>
 </head>
 <body class="bodyGradient">
@@ -281,7 +286,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
           <div class="card blue-grey darken-1 ">
              <div class="card-content white-text">
                <span class="card-title">ORTHOGRAPHIC COMPLEXITY</span>
-               <p>How difficult it is to read/write?</p>
+               <p>How difficult it is to read/write this text?</p>
              </div>
              <div id="ldBar1" style="text-align: center; padding-bottom: 30px"></div>
              <div class="card-action" style="text-align: center;">
@@ -293,7 +298,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
            <div class="card blue-grey darken-1 ">
              <div class="card-content white-text">
                <span class="card-title">PHONOLOGICAL COMPLEXITY</span>
-               <p>How difficult it is to pronounce?</p>
+               <p>How difficult it is to pronounce this text?</p>
              </div>
              <div id="ldBar2" style="text-align: center; padding-bottom: 30px"></div>
              <div class="card-action" style="text-align: center;">
@@ -304,9 +309,17 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
         <div class="col s4">
            <div class="card blue-grey darken-1 ">
              <div class="card-content white-text">
-               <span class="card-title">GRADE</span>
-               <p>Suitable grade level</p>
+               <span class="card-title">GRADE LEVEL SUITABILITY</span>
+               <p>Which grade child can use this text?</p>
              </div>
+             <div style="text-align: center; padding-bottom: 15px">
+              <button id="grd1Btn" class="button button-caution button-square button-small"><span class="grdBtnText">1</span></button>
+              <button id="grd2Btn" class="button button-caution button-square button-small"><span class="grdBtnText">2</span></button>
+              <button id="grd3Btn" class="button button-caution button-square button-small"><span class="grdBtnText">3</span></button>
+              <button id="grd4Btn" class="button button-action button-square button-small"><span class="grdBtnText">4</span></button>
+              <button id="grd5Btn" class="button button-action button-square button-small"><span class="grdBtnText">5</span></button>
+              <button id="grd6Btn" class="button button-action button-square button-small"><span class="grdBtnText">> 5</span></button>
+           </div>
              <div class="card-action" style="text-align: center;">
                <a href="#" id="result3"></a>
              </div>
@@ -373,7 +386,7 @@ var progressOptions = {
   color: 'red',
   trailColor: '#eee',
   trailWidth: 1,
-  svgStyle: {width: '150px'},
+  svgStyle: {width: '150px', height: '15px'},
   text: {
     style: {
       color: '#fff',
@@ -389,6 +402,19 @@ var progressOptions = {
 
 var bar1;
 var bar2;
+
+function updateGradeBtnClass(grade) {
+  for (var i=1; i<=6; i++) {
+    var btnId = 'grd' + i + 'Btn';
+    if (grade <= i) {
+      $('#' + btnId).removeClass('button-caution');
+      $('#' + btnId).addClass('button-action');
+    } else {
+      $('#' + btnId).removeClass('button-action');
+      $('#' + btnId).addClass('button-caution');
+    }
+  }
+}
 
 //function to call complexity measure api to compute ortho/phono complexity along with grade suggestion
 function compute() {
@@ -428,13 +454,13 @@ function compute() {
         bar2.destroy();
       }
 
-      var orthoColor = 'green';
+      var orthoColor = '#a5de37';
       if (totalOrthoComplexity > 10) {
-        orthoColor = 'red';
+        orthoColor = '#ff4351';
       } else if (totalOrthoComplexity <= 10 && totalOrthoComplexity > 5) {
-        orthoColor = 'orange';
+        orthoColor = '#feae1b';
       } else if (totalOrthoComplexity <= 5) {
-        orthoColor = 'green';
+        orthoColor = '#a5de37';
       }
       progressOptions.color = orthoColor;
 
@@ -444,13 +470,13 @@ function compute() {
       var orthoProgess = totalOrthoComplexity/20;
       bar1.animate(orthoProgess);
 
-      var phonicColor = 'green';
+      var phonicColor = '#a5de37';
       if (totalPhonicComplexity > 200) {
-        phonicColor = 'red';
+        phonicColor = '#ff4351';
       } else if (totalPhonicComplexity <= 200 && totalPhonicComplexity > 100) {
-        phonicColor = 'orange';
+        phonicColor = '#feae1b';
       } else if (totalPhonicComplexity <= 100) {
-        phonicColor = 'green';
+        phonicColor = '#a5de37';
       }
       progressOptions.color = phonicColor;
       bar2 = new ProgressBar.Line('#ldBar2', progressOptions);
@@ -461,18 +487,30 @@ function compute() {
 
       var meanComplexity = data.result.text_complexity.meanComplexity;
       //mean complpexity is nothing but sum of orth0 and phono complexity      
-      if(20>meanComplexity&& meanComplexity>0)
+      if(20>meanComplexity&& meanComplexity>=0) {
         document.getElementById("result3").innerHTML += "First" ;
-      else if(30>meanComplexity&& meanComplexity>=20)
+        updateGradeBtnClass(1);
+      }
+      else if(30>meanComplexity&& meanComplexity>=20) {
         document.getElementById("result3").innerHTML += "Second" ;
-      else if(40>meanComplexity&& meanComplexity>=30)
+        updateGradeBtnClass(2);
+      }
+      else if(40>meanComplexity&& meanComplexity>=30) {
         document.getElementById("result3").innerHTML += "Third" ;
-      else if(50>meanComplexity&& meanComplexity>=40)
+        updateGradeBtnClass(3);
+      }
+      else if(50>meanComplexity&& meanComplexity>=40) {
         document.getElementById("result3").innerHTML += "Four" ;
-      else if(70>meanComplexity&& meanComplexity>=50)
+        updateGradeBtnClass(4);
+      }
+      else if(70>meanComplexity&& meanComplexity>=50) {
         document.getElementById("result3").innerHTML += "Five" ;
-      else
+        updateGradeBtnClass(5);
+      }
+      else {
         document.getElementById("result3").innerHTML += "Higher than Five" ;
+        updateGradeBtnClass(6);
+      }
 
       document.getElementById("result_card").style.display = "block";
 
