@@ -9,7 +9,6 @@
 <meta http-equiv="Cache-Control" content="no-store" />
 <meta http-equiv="pragma" content="no-cache" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<link rel="stylesheet" href="./css/loading-bar.css">
 <style>
   .bodyGradient{
 
@@ -287,7 +286,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
              <div class="card-action">
                <a href="#" id="result1"></a>
              </div>
-             <div id="ldBar1" data-preset="bubble"></div>
+             <div id="ldBar1"></div>
           </div>
         </div>
         <div class="col s4">
@@ -299,7 +298,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
              <div class="card-action">
                <a href="#" id="result2"></a>
              </div>
-             <div id="ldBar2" data-preset="bubble"></div>
+             <div id="ldBar2"></div>
           </div>
         </div>
         <div class="col s4">
@@ -323,7 +322,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
 </div>
 </body>
 <script src="./js/jquery-1.7.2.min.js"></script>
-<script src="./js/loading-bar.min.js"></script>
+<script src="./js/progressbar.min.js"></script>
 <script type="text/javascript">
 var language_code = localStorage["language_code"];
 if(language_code=='hi-IN') document.getElementById('language_code_span').innerHTML = "हिन्दी(Hindi)";
@@ -367,6 +366,48 @@ function toggleStartStop() {
   }
 }
 
+var bar1 = new ProgressBar.Circle('#ldBar1', {
+  strokeWidth: 6,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: 'red',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null,
+  text: {
+    style: {
+        color: '#000',
+        position: 'absolute',
+        left: '50px',
+        top: '50px',
+        padding: 0,
+        margin: 0,
+        transform: null
+    }
+  }
+});
+
+var bar2 = new ProgressBar.Circle('#ldBar2', {
+  strokeWidth: 6,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#000',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null,
+  text: {
+    style: {
+        color: '#000',
+        position: 'absolute',
+        left: '50px',
+        top: '50px',
+        padding: 0,
+        margin: 0,
+        transform: null
+    }
+  }
+});
+
 //function to call complexity measure api to compute ortho/phono complexity along with grade suggestion
 function compute() {
     var language = localStorage["language_code"];    
@@ -394,10 +435,11 @@ function compute() {
       document.getElementById("result1").innerHTML = data.result.text_complexity.totalOrthoComplexity;
       document.getElementById("result2").innerHTML = data.result.text_complexity.totalPhonicComplexity;
 
-      var bar1 = document.getElementById('ldBar1').ldBar;
-      bar1.set(30);
-      var bar2 = document.getElementById('ldBar2').ldBar;
-      bar2.set(90);
+      bar1.setText(23.5);
+      bar1.animate(0.3);
+
+      bar2.setText(60);
+      bar2.animate(0.753);
 
       var meanComplexity = data.result.text_complexity.meanComplexity;
       //mean complpexity is nothing but sum of orth0 and phono complexity      

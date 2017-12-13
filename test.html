@@ -1,0 +1,83 @@
+
+
+
+<button onclick="update()">Test</button>
+
+<br><br><br><br>
+
+<div id="ldBar1" style="width:10%; height: 20px; float: left"></div>
+<div id="ldBar2" style="width:10%; height: 20px; float: right"></div>
+
+
+
+
+
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/progressbar.min.js"></script>
+
+<script type="text/javascript">
+	
+var bar1 = new ProgressBar.Circle('#ldBar1', {
+  strokeWidth: 6,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#000',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null,
+  text: {
+  	style: {
+  		color: '#000',
+      	position: 'absolute',
+      	left: '50px',
+      	top: '50px',
+      	padding: 0,
+      	margin: 0,
+      	transform: null
+  	}
+  }
+});
+
+var bar2 = new ProgressBar.Circle('#ldBar2', {
+  strokeWidth: 6,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: 'red',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null,
+  text: {
+  	style: {
+  		color: '#000',
+      	position: 'absolute',
+      	left: '50px',
+      	top: '50px',
+      	padding: 0,
+      	margin: 0,
+      	transform: null
+  	}
+  }
+});
+
+var a = true;
+
+function update() {
+	if (a) {
+		bar1.setText(23.5);
+		bar1.animate(0.3);
+
+		bar2.setText(60);
+		bar2.animate(0.753);
+		a = false;
+	} else {
+		bar1.setText(92.5);
+		bar1.animate(0.9);
+
+		bar2.setText(30);
+		bar2.animate(0.35);
+		a = true;
+	}
+	
+}
+
+</script>
