@@ -11,10 +11,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <style>
   .bodyGradient{
-  background: #abbaab; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #abbaab, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #abbaab, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+background: #485563;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
    }
   .card .card-title {
     font-size: 18px !important;
@@ -38,6 +37,7 @@
   textarea#textarea {
     width: 659px; height: 90px;
     font-family: Tahoma, sans-serif;
+    color: #ffab40;
     font-size: 50px;
     min-height: 90px;
     text-align: center;
@@ -222,14 +222,14 @@
 <div class="row">
   <div class="col s12">      
     <h4 class='text-center grey-text lighten-3'>
-      <a href=""><p>Selected Language :<span id="language_code_span"></span></p></a>
+      <a href=""><p>click Mic and speak in <span id="language_code_span"></span></p></a>
     </h4>
   </div>
 </div>
 
 <div class="center">
   <button id="start_button" onclick="toggleStartStop()"">
-    <img id="start_img" src="record.jpg" alt="Start" height="90" width="130"></button>
+    <img id="start_img" src="mic1.png" alt="Start" height="90" width="90"></button>
   <textarea id="textarea" cols=80 onkeydown="if(event.keyCode == 13){ compute(); return false;}"></textarea>  
 </div>
 <!--<div class="center" id="result"></div>-->
@@ -300,7 +300,7 @@
 
 <script type="text/javascript">
 var language_code = localStorage["language_code"];
-if(language_code=='hi-IN') document.getElementById('language_code_span').innerHTML = "हिन्दी - Hindi";
+if(language_code=='hi-IN') document.getElementById('language_code_span').innerHTML = "हिन्दी(Hindi)";
 if(language_code=='kn-IN') document.getElementById('language_code_span').innerHTML = "Kannada";
 if(language_code=='te-IN') document.getElementById('language_code_span').innerHTML = "Telugu";
 
@@ -325,7 +325,6 @@ recognition.onresult = function (event) {
 
 function reset() {
   recognizing = false;
-  start_img.src = 'record.jpg';
 }
 
 function toggleStartStop() {
@@ -338,7 +337,6 @@ function toggleStartStop() {
     console.log(recognition.lang);
     recognition.start();
     recognizing = true;
-    start_img.src = 'recordAnime.gif';
     on();
   }
 }
