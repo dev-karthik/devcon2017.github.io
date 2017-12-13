@@ -10,12 +10,12 @@
 <meta http-equiv="pragma" content="no-cache" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <style>
-  * {
-    font-family: Verdana, Arial, sans-serif;
-  }
-  body {
-     background: #fdfdfd;
-  }
+  .bodyGradient{
+  background: #abbaab; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #abbaab, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #abbaab, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+   }
   .card .card-title {
     font-size: 18px !important;
   }
@@ -47,7 +47,18 @@
     background-color:transparent;
     padding: 0;
   }
-  .cards-container {
+
+  #text{
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+  }
+
+.cards-container {
   column-break-inside: avoid;
 }
 .cards-container .card {
@@ -89,7 +100,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.8);
     z-index: 2;
     cursor: pointer;
 }
@@ -205,14 +216,95 @@
 }
 
 </style>
-<script type="text/javascript">
-	window.onload = function () {
-	var language_code = localStorage["language_code"];
-    document.getElementById('language_code').innerHTML = language_code;
-    localStorage.removeItem("language_code");
-    console.log(language_code);
-}
+</head>
+<body class="bodyGradient">
 
+<div class="row">
+  <div class="col s12">      
+    <h4 class='text-center grey-text lighten-3'>
+      <a href=""><p>Selected Language :<span id="language_code_span"></span></p></a>
+    </h4>
+  </div>
+</div>
+
+<div class="center">
+  <button id="start_button" onclick="toggleStartStop()"">
+    <img id="start_img" src="record.jpg" alt="Start" height="90" width="130"></button>
+  <textarea id="textarea" cols=80 onkeydown="if(event.keyCode == 13){ compute(); return false;}"></textarea>  
+</div>
+<!--<div class="center" id="result"></div>-->
+<div id="overlay" onclick="off()">
+  <div id="text">Click to stop listening</div>
+  <div id="preloader_1">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+  <div id="result_card" class="container">
+    <div class="row">
+      <div class="col s12">      
+        <h4 class='text-center grey-text lighten-3'>
+          <a href="">Your Score</a>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="col s4">
+            <div class="card blue-grey darken-1">
+               <div class="card-content white-text">
+                 <span class="card-title">ORTHOGRAPHIC COMPLEXITY</span>
+                 <p>how complex it is to write this text!</p>
+               </div>
+               <div class="card-action">
+                 <a href="#" id="result1"></a>
+               </div>
+            </div>
+          </div>
+          <div class="col s4">
+             <div class="card blue-grey darken-1">
+               <div class="card-content white-text">
+                 <span class="card-title">PHONOLOGIC COMPLEXITY</span>
+                 <p>how complex it is to pronounce this text!</p>
+               </div>
+               <div class="card-action">
+                 <a href="#" id="result2"></a>
+               </div>
+            </div>
+          </div>
+          <div class="col s4">
+             <div class="card blue-grey darken-1">
+               <div class="card-content white-text">
+                 <span class="card-title">GRADE</span>
+                 <p>we suggest the grade suitable for this text!</p>
+               </div>
+               <div class="card-action">
+                 <a href="#" id="result3"></a>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+var language_code = localStorage["language_code"];
+if(language_code=='hi-IN') document.getElementById('language_code_span').innerHTML = "हिन्दी - Hindi";
+if(language_code=='kn-IN') document.getElementById('language_code_span').innerHTML = "Kannada";
+if(language_code=='te-IN') document.getElementById('language_code_span').innerHTML = "Telugu";
+
+console.log(language_code);
 
 var recognizing;
 var recognition = new webkitSpeechRecognition();
@@ -241,17 +333,19 @@ function toggleStartStop() {
     recognition.stop();
     reset();
   } else {
-    recognition.lang = language_code.innerHTML;
+    recognition.lang = localStorage["language_code"];
+    resetCardValue();
     console.log(recognition.lang);
     recognition.start();
     recognizing = true;
     start_img.src = 'recordAnime.gif';
+    on();
   }
 }
 
 //function to call complexity measure api to compute ortho/phono complexity along with grade suggestion
 function compute() {
-    var language = language_code.innerHTML;    
+    var language = localStorage["language_code"];    
     var language_id = language.substring(0, 2);
     
     if(language_id=='kn') language_id='ka';
@@ -273,121 +367,47 @@ function compute() {
       var data = JSON.parse(xmlhttp.responseText);
       //log result text complexity response
       console.log(data.result.text_complexity);
-      document.getElementById("result").innerHTML = "";
+      /*document.getElementById("result").innerHTML = "";
       document.getElementById("result").innerHTML += "Orthographic Complexity : <b>" +data.result.text_complexity.totalOrthoComplexity+"<b>";
-      document.getElementById("result").innerHTML += "<BR>Phonologic Complexity : <b>" +data.result.text_complexity.totalPhonicComplexity+"<b>";
+      document.getElementById("result").innerHTML += "<BR>Phonologic Complexity : <b>" +data.result.text_complexity.totalPhonicComplexity+"<b>";*/
+      resetCardValue();
+      document.getElementById("result1").innerHTML = data.result.text_complexity.totalOrthoComplexity;
+      document.getElementById("result2").innerHTML = data.result.text_complexity.totalPhonicComplexity;
+
       var meanComplexity = data.result.text_complexity.meanComplexity;
       //mean complpexity is nothing but sum of orth0 and phono complexity      
       if(20>meanComplexity&& meanComplexity>0)
-        document.getElementById("result").innerHTML += "<BR>Grade Level : First" ;
+        document.getElementById("result3").innerHTML += "First" ;
       else if(30>meanComplexity&& meanComplexity>=20)
-        document.getElementById("result").innerHTML += "<BR>Grade Level : Second" ;
+        document.getElementById("result3").innerHTML += "Second" ;
       else if(40>meanComplexity&& meanComplexity>=30)
-        document.getElementById("result").innerHTML += "<BR>Grade Level : Third" ;
+        document.getElementById("result3").innerHTML += "Third" ;
       else if(50>meanComplexity&& meanComplexity>=40)
-        document.getElementById("result").innerHTML += "<BR>Grade Level : Four" ;
+        document.getElementById("result3").innerHTML += "Four" ;
       else if(70>meanComplexity&& meanComplexity>=50)
-        document.getElementById("result").innerHTML += "<BR>Grade Level : Five" ;
+        document.getElementById("result3").innerHTML += "Five" ;
       else
-        document.getElementById("result").innerHTML += "<BR>Grade Level : Higher than Five" ;
+        document.getElementById("result3").innerHTML += "Higher than Five" ;
+
+      //document.getElementById("result_card").style.display = "inline";
+
     }
   };
 
 }
 
+function resetCardValue() {
+      document.getElementById("result1").innerHTML="";
+      document.getElementById("result2").innerHTML="";
+      document.getElementById("result3").innerHTML="";
+}
 
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    toggleStartStop();
+    document.getElementById("overlay").style.display = "none";
+}
 </script>
-</head>
-
-  <div class="row">
-    <div class="col s12">      
-      <h4 class='text-center grey-text lighten-3'>
-        <a href="">Your Score</a>
-      </h4>
-    </div>
-  </div>
-<body>
-<div class="center">
-  <button id="start_button" onclick="toggleStartStop()"">
-    <img id="start_img" src="record.jpg" alt="Start" height="90" width="130"></button>
-  <textarea id="textarea" cols=80 onkeydown="if(event.keyCode == 13){ compute(); return false;}"></textarea>  
-</div>
-<div class="center" id="result"></div>
-
-<div class="container">
-  <div class="row">
-    <div class="col s12">      
-      <h4 class='text-center grey-text lighten-3'>
-        <a href="">Your Score</a>
-      </h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12">
-          <div class="row">
-
-      <div class="col s4">
-                      <div class="card blue-grey darken-1">
-         <div class="card-content white-text">
-           <span class="card-title">Card Title</span>
-           <p>I am a very simple card. I am good at containing small bits of information.</p>
-         </div>
-         <div class="card-action">
-           
-           <a href="#">This is a link skjdhkfjd hdshkjfdsh</a>
-         </div>
-        </div>
-      </div>
-      <div class="col s4">
-                     <div class="card blue-grey darken-1">
-         <div class="card-content white-text">
-           <span class="card-title">Card Title</span>
-           <p>I am a very simple card. I am good at containing small bits of information.</p>
-         </div>
-         <div class="card-action">
-           <a>This is a link</a>
-           <a href="#">This is a link</a>
-         </div>
-        </div>
-    </div>
-          <div class="col s4">
-                     <div class="card blue-grey darken-1">
-         <div class="card-content white-text">
-           <span class="card-title">Card Title</span>
-           <p>I am a very simple card. I am good at containing small bits of information.</p>
-         </div>
-         <div class="card-action">
-           <a href="#">This is a link</a>
-           <a href="#">This is a link</a>
-         </div>
-        </div>
-    </div>
-
- 
-
-
-
-<div id="overlay">
-  <div id="preloader_1">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-    <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-</div>
-
-
-
-
-
-
-
-  </div>
-</div>
-</body>
