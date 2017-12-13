@@ -15,20 +15,28 @@
    <body>
    <div class="carousel carousel-slider center" >
     <div class="carousel-item teal lighten-2 white-text" href="#one!">
-      <h5 class="center"><div id="actual1"></div></h5>
+      <h1 class="center"><div id="actual1"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result1"></div></h3>
+      <div id="status1"></div>
     </div>
     <div class="carousel-item amber ligthen-2 white-text" href="#two!">
-      <h5 class="center"><div id="actual2"></div></h5>
+      <h1 class="center"><div id="actual2"></div></h1>
       <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result2"></div></h3>
+      <div id="status2"></div>
     </div>
     <div class="carousel-item green white-text" href="#three!">
-      <h5 class="center"><div id="actual3"></div></h5>
+      <h1 class="center"><div id="actual3"></div></h1>
       <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result3"></div></h3>
+      <div id="status3"></div>
     </div>
     <div class="carousel-item blue white-text" href="#four!">
-      <h5 class="center"><div id="actual4"></div></h5>
+      <h1 class="center"><div id="actual4"></div></h1>
       <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(4)"><i class = "material-icons"><img id="start_img4" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result4"></div></h3>
+      <div id="status4"></div>
     </div>
    
   </div>
@@ -97,10 +105,17 @@ function validate(googleOutput){
   var actual = hel[currentIndex];
   console.log("actual="+actual);
   console.log("google output"+googleOutput);
+  document.getElementById("result"+(1+currentIndex)).innerHTML=googleOutput;
   if(googleOutput==actual){
-    alert("succeess");
+    console.log("succeess");
+   document.getElementById("status"+(1+currentIndex)).innerHTML="SUCCESS";
+    setInterval(function(){ 
+      currentIndex++;
+      $('.carousel').carousel('next');
+     }, 3000);
   }else{
-    alert("game over!");
+    console.log("game over!");
+    document.getElementById("status"+(1+currentIndex)).innerHTML="GAME OVER";
   }
 }
 
