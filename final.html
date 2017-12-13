@@ -44,10 +44,10 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
   }
 
   #textarea {
-    width: 659px; height: 90px;
+    height: 90px;
     font-family: Tahoma, sans-serif;
-    color: #ffab40;
-    font-size: 50px;
+    color: #333637;
+    font-size: 20px;
     min-height: 90px;
     text-align: center;
   }
@@ -128,7 +128,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
   #preloader_1{
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: 47%;
       background:#ECF0F1;
       font-size: 50px;
       color: white;
@@ -236,21 +236,23 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
 <div class="row">
   <div class="col s12">      
     <h4 class='text-center grey-text lighten-3'>
-      <a href=""><p>Language <span id="language_code_span"></span></p></a>
+      <a href=""><p>Language: <span id="language_code_span"></span></p></a>
     </h4>
   </div>
 </div>
 <div class="row">
-  <div class="col s12">      
-    <div id="textarea" class="center"></div>
+  <div class="col s2"></div>
+  <div class="col s8">      
+    <textarea id="textarea" class="center"></textarea>
   </div>
+  <div class="col s2"></div>
 </div>
 
 <div id="overlay" tabindex="1" onkeydown="if(event.keyCode == 27){ esc(); return false;}">
   <div  id="record_button" class="center">
     <button id="start_button" onclick="toggleStartStop()"><img id="start_img" src="mic2.png" alt="Start" height="90" width="90"></button>
   </div>
-  <div id="text" onclick="off()">Click here to stop listening</div>
+  <div id="text" onclick="off()">Stop Recording</div>
   <div id="preloader_1">
     <span></span>
     <span></span>
