@@ -162,7 +162,7 @@ function validate(googleOutput){
          document.getElementById("timer"+(1+currentIndex)).innerHTML = "You are Ready!";
          clearInterval(interval);
       }
-      //clearTimeout(timer);
+      clearTimeout(timer);
      }, 1000);
   }else{
     console.log("game over!");
