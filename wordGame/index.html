@@ -9,7 +9,49 @@
          src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
       <script src = "./js/materialize.min.js"></script>
       <script src = "./js/googleaudio.js"></script>
+<style type="text/css">
+  .game-over {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  color: red;
+  font-family: 'Press Start 2P',cursive;
+  font-size: 3vw;
+  text-shadow: 2px 2px 0px #333;
+  text-align: center;
+  width: 100%;
+  animation: 250ms game-over .1s forwards;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  
+    span {
+      opacity: 0;
+      display: inline;
+      padding-top: 3.5rem;
+      transform: scale(0) rotate(-2deg);
+      animation: 3s slide 3.2s ease-out forwards, infinite 400ms rock 6.2s linear alternate;
+      z-index: 11;
+    }
+  }
 
+  @keyframes game-over {
+    100% { opacity: 1; }
+  }
+
+  @keyframes slide {
+    75% { transform: scale(1) rotate(5turn); opacity: .5;}
+    92% { transform: scale(1) rotate(5turn); opacity: 1;}
+    100% { transform: scale(1.15) rotate(5turn); opacity: 1; }
+  }
+
+  @keyframes rock {
+    0% { transform: rotate(-2deg) scale(1.15)}
+    100% { transform: rotate(2deg) scale(1.15)}
+  }
+
+</style>
    </head>
   
    <body>
@@ -18,19 +60,19 @@
       <h1 class="center"><div id="actual1"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result1"></div></h3>
-      <div id="status1"></div>
+      <div id="status1"></div><div id="timer1"></div>
     </div>
     <div class="carousel-item amber ligthen-2 white-text" href="#two!">
       <h1 class="center"><div id="actual2"></div></h1>
       <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result2"></div></h3>
-      <div id="status2"></div>
+      <div id="status2"></div><div id="timer2"></div>
     </div>
     <div class="carousel-item green white-text" href="#three!">
       <h1 class="center"><div id="actual3"></div></h1>
       <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result3"></div></h3>
-      <div id="status3"></div>
+      <div id="status3"></div><div id="timer3"></div>
     </div>
     <div class="carousel-item blue white-text" href="#four!">
       <h1 class="center"><div id="actual4"></div></h1>
@@ -40,9 +82,6 @@
     </div>
    
   </div>
-   <div class="center">
-      <a id="btnContinue" class="waves-effect waves-light btn">next</a>
-   </div>
 </body>
 </html>
 
@@ -106,17 +145,30 @@ function validate(googleOutput){
   console.log("actual="+actual);
   console.log("google output"+googleOutput);
   document.getElementById("result"+(1+currentIndex)).innerHTML=googleOutput;
+  var seconds_left = 10;
   if(googleOutput==actual){
     console.log("succeess");
-   document.getElementById("status"+(1+currentIndex)).innerHTML="SUCCESS";
+    if(currentIndex==3)
+      document.getElementById("status"+(1+currentIndex)).innerHTML="Congratulations..";
+    else
+      document.getElementById("status"+(1+currentIndex)).innerHTML="You are right, Be prepared for next round..";
     var timer = setInterval(function(){ 
+    
       currentIndex++;
       $('.carousel').carousel('next');
-      clearTimeout(timer);
-     }, 3000);
+      document.getElementById("timer"+(1+currentIndex)).innerHTML = --seconds_left;
+      if (seconds_left <= 0)
+      {
+         document.getElementById("timer"+(1+currentIndex)).innerHTML = "You are Ready!";
+         clearInterval(interval);
+      }
+      //clearTimeout(timer);
+     }, 1000);
   }else{
     console.log("game over!");
-    document.getElementById("status"+(1+currentIndex)).innerHTML="GAME OVER";
+    var id = "status"+(1+currentIndex);
+    document.getElementById(id).innerHTML="<span>GAME OVER</span>";
+    $("#"+id).addClass( 'game-over' );
   }
 }
 
