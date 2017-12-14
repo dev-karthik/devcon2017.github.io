@@ -57,7 +57,7 @@
   
    <body>
    <div class="carousel carousel-slider center" >
-    <div class="carousel-item green white-text" href="#zero!">
+<!--    <div class="carousel-item green white-text" href="#zero!">
         <h1 class="center">Test your language<h1>
         <div class="input-field col s12">
           <select id="language_id" >
@@ -68,7 +68,7 @@
           </select>
           <label>Select your lanauge</label>
       </div>
-    </div> 
+    </div> -->
     <div class="carousel-item teal lighten-2 white-text" href="#one!">
       <h1 class="center"><div id="actual1"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
@@ -245,7 +245,7 @@ function toggleStartStop(index) {
 function validate(googleOutput){
   console.log("validate");
   console.log(currentIndex); 
-  var actual = hel[currentIndex];
+  var actual = hel[currentIndex-1];
   console.log("actual="+actual);
   console.log("google output"+googleOutput);
   document.getElementById("result"+currentIndex).innerHTML=googleOutput;
@@ -253,9 +253,9 @@ function validate(googleOutput){
   if(googleOutput==actual){
     console.log("succeess");
     if(currentIndex==3)
-      document.getElementById("status"+currentIndex).innerHTML="Congratulations..";
+      document.getElementById("status"+currentIndex).innerHTML="Congratulations! You passed all levels";
     else
-      document.getElementById("status"+currentIndex).innerHTML="You are right, Be prepared for next round..";
+      document.getElementById("status"+currentIndex).innerHTML="Wow, Nice try! WAIT";
     var timer = setInterval(function(){ 
       document.getElementById("timer"+currentIndex).innerHTML = --seconds_left;
       if (seconds_left <= 0)
