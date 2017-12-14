@@ -1,0 +1,58 @@
+.game-over {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  color: red;
+  font-family: 'Press Start 2P',cursive;
+  font-size: 3vw;
+  text-shadow: 2px 2px 0px #333;
+  text-align: center;
+  width: 100%;
+  animation: 250ms game-over .1s forwards;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  
+  span {
+    opacity: 0;
+    display: inline;
+    padding-top: 3.5rem;
+    transform: scale(0) rotate(-2deg);
+    animation: 3s slide 3.2s ease-out forwards, infinite 400ms rock 6.2s linear alternate;
+    z-index: 11;
+  }
+}
+
+@keyframes appear {
+  100% { transform: scaleY(1);}
+}
+
+@keyframes game-over {
+  100% { opacity: 1; }
+}
+
+@keyframes slide {
+  75% { transform: scale(1) rotate(5turn); opacity: .5;}
+  92% { transform: scale(1) rotate(5turn); opacity: 1;}
+  100% { transform: scale(1.15) rotate(5turn); opacity: 1; }
+}
+
+@keyframes rock {
+  0% { transform: rotate(-2deg) scale(1.15)}
+  100% { transform: rotate(2deg) scale(1.15)}
+}
+
+
+// Setup
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
