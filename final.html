@@ -334,6 +334,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
 <div class="center">
   <button id="start_button" onclick="on()"">
   <img id="start_img" src="reload2.png" alt="Start" height="90" width="90"></button>
+  <span onclick="goToHome()"><img id="home_img" src="home.png" alt="Start" height="90" width="90"></button></span>
 </div>
 </body>
 <script src="./js/jquery-1.7.2.min.js"></script>
@@ -517,6 +518,15 @@ function compute() {
     }
   };
 
+}
+
+function goToHome() {
+  var form = document.createElement("form");
+  $(document.body).append(form);
+  form.setAttribute("id", "myForm");
+  form.setAttribute('method',"get");
+  form.setAttribute('action',"start.html");
+  form.submit();
 }
 
 function resetCardValue() {
