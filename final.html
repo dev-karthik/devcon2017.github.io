@@ -314,7 +314,7 @@ background: linear-gradient(to right, #D7DDE8, #757F9A); */
                <span class="card-title">GRADE LEVEL SUITABILITY</span>
                <p>Which grade child can use this text?</p>
              </div>
-             <div style="text-align: center; padding-bottom: 47px">
+             <div style="text-align: center; padding-top: 17px; padding-bottom: 30px">
               <button id="grd1Btn" class="button button-caution button-square button-small"><span class="grdBtnText">1</span></button>
               <button id="grd2Btn" class="button button-caution button-square button-small"><span class="grdBtnText">2</span></button>
               <button id="grd3Btn" class="button button-caution button-square button-small"><span class="grdBtnText">3</span></button>
@@ -409,11 +409,9 @@ function updateGradeBtnClass(grade) {
   for (var i=1; i<=6; i++) {
     var btnId = 'grd' + i + 'Btn';
     if (grade <= i) {
-      $('#' + btnId).removeClass('button-caution');
       $('#' + btnId).addClass('button-action');
     } else {
       $('#' + btnId).removeClass('button-action');
-      $('#' + btnId).addClass('button-caution');
     }
   }
 }

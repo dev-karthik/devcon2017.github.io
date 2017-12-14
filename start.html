@@ -81,8 +81,7 @@
 }
 .test{
 	position: absolute;
-	z-index:99999;
-	min-width: 300px;
+	z-index: 99999 !important;
 }
 
 .title {
@@ -99,7 +98,7 @@
 }
 
 .cardLeftmargin-34 {
-	left: 34% !important;
+	left: 15% !important;
 }
 
 .cardHeadingTxt{
@@ -153,10 +152,22 @@ $(document).ready(function (e) {
     $('.parti').movingBubble({ addCss: true });
 });
 
+var activity = 1;
+
+function selectActivity(choice) {
+  if (choice == 1)
+    activity = 1;
+  else
+    activity = 2;
+  $('#langSelectionDiv').show();
+}
+
 function next(language_code) {
   console.log("language: "+language_code);  
   localStorage["language_code"] = language_code;
-  //var form=document.getElementById('formName'); //this fills the form
+}
+
+function goToComplexityMeasures() {
   var form = document.createElement("form");
   $(document.body).append(form);
   form.setAttribute("id", "myForm");
@@ -164,24 +175,52 @@ function next(language_code) {
   form.setAttribute('action',"final.html");
   form.submit();
 }
+
+function goToWordGame() {
+  var form = document.createElement("form");
+  $(document.body).append(form);
+  form.setAttribute("id", "myForm");
+  form.setAttribute('method',"get");
+  form.setAttribute('action',"wordGame/index.html");
+  form.submit();
+}
+
 </script>
 </head>
 <body class="bodyGradient">
-    <div class="row margin-top-30 test cardLeftmargin-34">
-      <div class="col s12"><div class="card-panel">
-          <span class="cardHeadingTxt">Select your language to start the game.
-          </span>
-	       <ul id = "dropdown" class = "dropdown-content">
+    <div class="row card-panel margin-top-30 test cardLeftmargin-34">
+      <div id="langSelectionDiv" class="col s12" >
+        <div class="" style="text-align: center;">
+           <div class="row"> 
+           <div class="col s10 offset-s1" >    
+           <span class="cardHeadingTxt">Select a language
+           </span>
+	         <ul id = "dropdown" class = "dropdown-content">
 	         <li><a href = "#" onclick="next('kn-IN')">Kannada</a></li>
 	         <li><a href = "#!" onclick="next('te-IN')">Telugu</a></li>
 	         <li><a href = "#" onclick="next('hi-IN')">हिन्दी - Hindi</a></li>
-	      </ul> 
-	      <div class="row margin-top-10"> 
-	       <div class="col s6 offset-s3">    
-	      	<a class = "btn dropdown-button" href = "#" data-activates = "dropdown">Language
-	         <i class = "mdi-navigation-arrow-drop-down right"></i></a>	</div></div>
+	         </ul> 
+           </div>
+           </div>
+	         <div class="row margin-top-10"> 
+	           <div class="col s10 offset-s1" >    
+	      	    <a class = "btn dropdown-button" href = "#" data-activates = "dropdown">Language
+	             <i class = "mdi-navigation-arrow-drop-down right"></i>
+              </a>	
+             </div>
+           </div>
         </div>
     </div>
+    <div class="col s12">
+        <div class="row"> 
+            <div class="col s6" style="text-align: center;">    
+              <a class = "btn dropdown-button" href="#" onclick="goToComplexityMeasures()">Check Text Complexity</a>  
+            </div>  
+            <div class="col s6" style="text-align: center;">    
+              <a class = "btn dropdown-button" href="#" onclick="goToWordGame()">Take Language Test</a>
+            </div>  
+        </div>
+      </div>
     </div>   
 <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
