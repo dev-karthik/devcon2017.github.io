@@ -284,6 +284,7 @@ function validate(googleOutput){
       {
          document.getElementById("timer"+currentIndex).innerHTML = "You are Ready!";
          //clearInterval(interval);
+         if(currentIndex==10)goToHome();
          currentIndex++;
          $('.carousel').carousel('next');
          clearTimeout(timer);
@@ -294,6 +295,25 @@ function validate(googleOutput){
     var id = "status"+currentIndex;
     document.getElementById(id).innerHTML="<span>GAME OVER</span>";
     $("#"+id).addClass( 'game-over' );
+    var seconds_left = 10;
+    var timer = setInterval(function(){ 
+      document.getElementById("timer"+currentIndex).innerHTML = --seconds_left;
+      if (seconds_left <= 0)
+      {
+         document.getElementById("timer"+currentIndex).innerHTML = "Try again!";
+         clearTimeout(timer);
+         if(currentIndex==10)goToHome();
+      }    
+     }, 1000);
   }
+}
+
+function goToHome() {
+  var form = document.createElement("form");
+  $(document.body).append(form);
+  form.setAttribute("id", "myForm");
+  form.setAttribute('method',"get");
+  form.setAttribute('action',"../start.html");
+  form.submit();
 }
 </script>
