@@ -170,7 +170,7 @@ color:#ffffff; /* yellow: not enough contrast with white background */
       <br>
       <br>
       <br>
-      <h2><div id="status9"></div></h2><h2>
+      <h2><div id="status9"></div></h2>
       <div id="timer9"></div>
     </div>
     <div class="carousel-item blue white-text" href="#ten!">
@@ -181,6 +181,7 @@ color:#ffffff; /* yellow: not enough contrast with white background */
       <br>
       <br>
       <h2><div id="status10"></div></h2>
+      <div id="timer10"></div>
     </div>
   </div>
 </body>
@@ -234,6 +235,7 @@ function toggleStartStop(index) {
     $(document).ready(function() {
 
       var language_code = localStorage["language_code"];
+      console.log("language test - language"+language_code);
       var data = lang_data[language_code];
       
 
@@ -302,7 +304,7 @@ function validate(googleOutput){
       {
          document.getElementById("timer"+currentIndex).innerHTML = "Try again!";
          clearTimeout(timer);
-         if(currentIndex==10)goToHome();
+         goToHome();
       }    
      }, 1000);
   }
