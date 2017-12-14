@@ -116,18 +116,3 @@
             transform: rotate(2deg) scale(1.15);
   }
 }
-
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  overflow: hidden;
-}

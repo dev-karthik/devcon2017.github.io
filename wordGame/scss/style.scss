@@ -43,16 +43,3 @@
   100% { transform: rotate(2deg) scale(1.15)}
 }
 
-
-// Setup
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  display: flex;
-  justify-content: flex-start;
-  overflow: hidden;
-}
-
