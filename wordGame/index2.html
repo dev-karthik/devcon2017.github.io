@@ -1,39 +1,282 @@
+<!DOCTYPE html>
 <html>
    <head>
-      <title>The Materialize Example</title>    
+      <title>The Materialize Example</title>  
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+      <meta http-equiv="cache-control" content="max-age=0" />
+      <meta http-equiv="cache-control" content="no-cache" />
+      <meta http-equiv="Cache-Control" content="no-store" />
+      <meta http-equiv="pragma" content="no-cache" />
       <link rel = "stylesheet"
          href = "https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel = "stylesheet" href = "./css/materialize.css">
       <script type = "text/javascript"
          src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
       <script src = "./js/materialize.min.js"></script>
+      <!--<script src="./js/collections/collections.js"></script>-->
+<style type="text/css">
+  .game-over {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  color: red;
+  font-family: 'Press Start 2P',cursive;
+  font-size: 3vw;
+  text-shadow: 2px 2px 0px #333;
+  text-align: center;
+  width: 100%;
+  animation: 250ms game-over .1s forwards;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  
+    span {
+      opacity: 0;
+      display: inline;
+      padding-top: 3.5rem;
+      transform: scale(0) rotate(-2deg);
+      animation: 3s slide 3.2s ease-out forwards, infinite 400ms rock 6.2s linear alternate;
+      z-index: 11;
+    }
+  }
 
+  @keyframes game-over {
+    100% { opacity: 1; }
+  }
+
+  @keyframes slide {
+    75% { transform: scale(1) rotate(5turn); opacity: .5;}
+    92% { transform: scale(1) rotate(5turn); opacity: 1;}
+    100% { transform: scale(1.15) rotate(5turn); opacity: 1; }
+  }
+
+  @keyframes rock {
+    0% { transform: rotate(-2deg) scale(1.15)}
+    100% { transform: rotate(2deg) scale(1.15)}
+  }
+
+</style>
    </head>
   
    <body>
-   <div class="col s12">
-  <ul class="tabs">
-    <li class="tab col s4"><a href="#test1" class="active">tab1</a>
-    </li>
-    <li class="tab col s4"><a href="#test2">tab2</a>
-    </li>
-    <li class="tab col s4"><a href="#test4">tab3</a>
-    </li>
-  </ul>
-</div>
-
-<div id='test1' class="col s12">
-  <a id="btnContinue" href='#test2'>continue</a>
-</div>
-<div id='test2' class="col s12"></div>
+   <div class="carousel carousel-slider center" >
+<!--    <div class="carousel-item green white-text" href="#zero!">
+        <h1 class="center">Test your language<h1>
+        <div class="input-field col s12">
+          <select id="language_id" >
+            <option value="" disabled selected>Choose your option</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="kn-IN">Kannada</option>
+            <option value="te-IN">Telugu</option>
+          </select>
+          <label>Select your lanauge</label>
+      </div>
+    </div> -->
+    <div class="carousel-item teal lighten-2 white-text" href="#one!">
+      <h1 class="center"><div id="actual1"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result1"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status1"></div></h2>
+        <div id="timer1"></div>
+    </div>
+    <div class="carousel-item amber ligthen-2 white-text" href="#two!">
+      <h1 class="center"><div id="actual2"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result2"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status2"></div></h2>
+      <div id="timer2"></div>
+    </div>
+    <div class="carousel-item yellow white-text" href="#three!">
+      <h1 class="center"><div id="actual3"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result3"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status3"></div></h2>
+      <div id="timer3"></div>
+    </div>
+    <div class="carousel-item deep-orange white-text" href="#four!">
+      <h1 class="center"><div id="actual4"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(4)"><i class = "material-icons"><img id="start_img4" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result4"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status4"></div></h2>
+      <div id="timer4"></div>
+    </div>
+    <div class="carousel-item blue-grey white-text" href="#five!">
+      <h1 class="center"><div id="actual5"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(5)"><i class = "material-icons"><img id="start_img5" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result5"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status5"></div></h2>
+      <div id="timer5"></div>
+    </div>
+    <div class="carousel-item grey white-text" href="#six!">
+      <h1 class="center"><div id="actual6"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(6)"><i class = "material-icons"><img id="start_img6" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result6"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status6"></div></h2>
+      <div id="timer6"></div>
+    </div>
+    <div class="carousel-item lime white-text" href="#seven!">
+      <h1 class="center"><div id="actual7"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(7)"><i class = "material-icons"><img id="start_img7" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result7"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status7"></div></h2>
+      <br>
+      <div id="timer7"></div>
+    </div>
+    <div class="carousel-item cyan white-text" href="#eight!">
+      <h1 class="center"><div id="actual8"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(8)"><i class = "material-icons"><img id="start_img8" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result8"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status8"></div></h2>
+      <div id="timer8"></div>
+    </div>
+    <div class="carousel-item deep-purple white-text" href="#nine!">
+      <h1 class="center"><div id="actual9"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(9)"><i class = "material-icons"><img id="start_img9" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result9"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status9"></div></h2><h2>
+      <div id="timer9"></div>
+    </div>
+    <div class="carousel-item blue white-text" href="#ten!">
+      <h1 class="center"><div id="actual10"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(10)"><i class = "material-icons"><img id="start_img10" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result10"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status10"></div></h2>
+        <div id="timer10"></div>
+    </div>
+    <div class="carousel-item green white-text" href="#eleven!">
+      <h1 class="center"><div id="actual11"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(11)"><i class = "material-icons"><img id="start_img11" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result11"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status11"></div></h2>
+    </div>   
+  </div>
+</body>
 </html>
 
 <script type="text/javascript">
-  $(document).ready(function() {
+
+var recognizing;
+var recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+reset();
+recognition.onend = reset();
+
+recognition.onresult = function (event) {
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+      // poulate voice to text output
+      //textvalue.innerHTML = event.results[i][0].transcript;
+      validate(event.results[i][0].transcript);
+    }
+  }
+}
+
+function reset() {
+  recognizing = false;
+}
+
+function toggleStartStop(index) {
+  if (recognizing) {
+    recognition.stop();
+    document.getElementById("start_img"+index).src='./robo/mic1.png';
+    reset();
+  } else {
+    recognition.lang = "hi-IN";
+    console.log(recognition.lang);
+    recognition.start();
+    document.getElementById("start_img"+index).src='./robo/mic3.png';
+    recognizing = true;
+    console.log("started");
+  }
+}
+
+  var hel = Array('हाथी','बिल्ली','माउस','मकान','माउस','मकान','माउस','मकान','माउस','मकान');
+  var currentIndex=0;
+    $(document).ready(function() {
+      $('select').material_select();
+      $('.carousel').carousel();
+      $('.carousel').carousel('set', "#one!");
+      currentIndex=1;
+      for(var i=1;i<11;i++)
+         document.getElementById("actual"+i).innerHTML=hel[i-1];
+
   $("#btnContinue").click(function() {
-    $('.carousel').carousel();
+    currentIndex++;
+    $('.carousel').carousel('next');
+
+  });
+
+  $('select').on('change', function() {
+        currentIndex++;
+    $('.carousel').carousel('next');    
   });
 });
+
+function validate(googleOutput){
+  console.log("validate");
+  console.log(currentIndex); 
+  var actual = hel[currentIndex-1];
+  console.log("actual="+actual);
+  console.log("google output"+googleOutput);
+  document.getElementById("result"+currentIndex).innerHTML=googleOutput;
+  var seconds_left = 10;
+  if(googleOutput==actual){
+    console.log("succeess");
+    if(currentIndex==3)
+      document.getElementById("status"+currentIndex).innerHTML="Congratulations! You passed all levels";
+    else
+      document.getElementById("status"+currentIndex).innerHTML="Wow, Nice try! WAIT";
+    var timer = setInterval(function(){ 
+      document.getElementById("timer"+currentIndex).innerHTML = --seconds_left;
+      if (seconds_left <= 0)
+      {
+         document.getElementById("timer"+currentIndex).innerHTML = "You are Ready!";
+         //clearInterval(interval);
+         currentIndex++;
+         $('.carousel').carousel('next');
+         clearTimeout(timer);
+      }    
+     }, 1000);
+  }else{
+    console.log("game over!");
+    var id = "status"+currentIndex;
+    document.getElementById(id).innerHTML="<span>GAME OVER</span>";
+    $("#"+id).addClass( 'game-over' );
+  }
+}
+
 </script>
-
-
