@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>The Materialize Example</title>    
+      <title>The Materialize Example</title>  
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
       <link rel = "stylesheet"
          href = "https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel = "stylesheet" href = "./css/materialize.css">
@@ -56,31 +57,128 @@
   
    <body>
    <div class="carousel carousel-slider center" >
+    <div class="carousel-item green white-text" href="#zero!">
+        <h1 class="center">Test your language<h1>
+        <div class="input-field col s12">
+          <select id="language_id" >
+            <option value="" disabled selected>Choose your option</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="kn-IN">Kannada</option>
+            <option value="te-IN">Telugu</option>
+          </select>
+          <label>Select your lanauge</label>
+      </div>
+    </div> 
     <div class="carousel-item teal lighten-2 white-text" href="#one!">
       <h1 class="center"><div id="actual1"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result1"></div></h3>
-      <div id="status1"></div><div id="timer1"></div>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status1"></div></h2>
+        <div id="timer1"></div>
     </div>
     <div class="carousel-item amber ligthen-2 white-text" href="#two!">
       <h1 class="center"><div id="actual2"></div></h1>
-      <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result2"></div></h3>
-      <div id="status2"></div><div id="timer2"></div>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status2"></div></h2>
+      <div id="timer2"></div>
     </div>
-    <div class="carousel-item green white-text" href="#three!">
+    <div class="carousel-item yellow white-text" href="#three!">
       <h1 class="center"><div id="actual3"></div></h1>
-      <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result3"></div></h3>
-      <div id="status3"></div><div id="timer3"></div>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status3"></div></h2>
+      <div id="timer3"></div>
     </div>
-    <div class="carousel-item blue white-text" href="#four!">
+    <div class="carousel-item deep-orange white-text" href="#four!">
       <h1 class="center"><div id="actual4"></div></h1>
-      <button id="start_button" class="btn-floating btn-large red" onclick="toggleStartStop(4)"><i class = "material-icons"><img id="start_img4" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(4)"><i class = "material-icons"><img id="start_img4" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
       <h3>Voice 2 Text: <div id="result4"></div></h3>
-      <div id="status4"></div>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status4"></div></h2>
+      <div id="timer4"></div>
     </div>
-   
+    <div class="carousel-item blue-grey white-text" href="#five!">
+      <h1 class="center"><div id="actual5"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(5)"><i class = "material-icons"><img id="start_img5" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result5"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status5"></div></h2>
+      <div id="timer5"></div>
+    </div>
+    <div class="carousel-item grey white-text" href="#six!">
+      <h1 class="center"><div id="actual6"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(6)"><i class = "material-icons"><img id="start_img6" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result6"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status6"></div></h2>
+      <div id="timer6"></div>
+    </div>
+    <div class="carousel-item lime white-text" href="#seven!">
+      <h1 class="center"><div id="actual7"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(7)"><i class = "material-icons"><img id="start_img7" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result7"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status7"></div></h2>
+      <br>
+      <div id="timer7"></div>
+    </div>
+    <div class="carousel-item cyan white-text" href="#eight!">
+      <h1 class="center"><div id="actual8"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(8)"><i class = "material-icons"><img id="start_img8" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result8"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status8"></div></h2>
+      <div id="timer8"></div>
+    </div>
+    <div class="carousel-item deep-purple white-text" href="#nine!">
+      <h1 class="center"><div id="actual9"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(9)"><i class = "material-icons"><img id="start_img9" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result9"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status9"></div></h2><h2>
+      <div id="timer9"></div>
+    </div>
+    <div class="carousel-item blue white-text" href="#ten!">
+      <h1 class="center"><div id="actual10"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(10)"><i class = "material-icons"><img id="start_img10" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result10"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status10"></div></h2>
+        <div id="timer10"></div>
+    </div>
+    <div class="carousel-item green white-text" href="#eleven!">
+      <h1 class="center"><div id="actual11"></div></h1>
+      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(11)"><i class = "material-icons"><img id="start_img11" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
+      <h3>Voice 2 Text: <div id="result11"></div></h3>
+      <br>
+      <br>
+      <br>
+      <h2><div id="status11"></div></h2>
+    </div>   
   </div>
 </body>
 </html>
@@ -122,19 +220,25 @@ function toggleStartStop(index) {
   }
 }
 
-  var hel = Array('हाथी','बिल्ली','माउस','मकान');
-  var currentIndex=-1;
+  var hel = Array('हाथी','बिल्ली','माउस','मकान','माउस','मकान','माउस','मकान','माउस','मकान');
+  var currentIndex=0;
     $(document).ready(function() {
+      $('select').material_select();
       $('.carousel').carousel();
       $('.carousel').carousel('set', "#one!");
-      currentIndex=0;
-      for(var i=0;i<4;i++)
-         document.getElementById("actual"+(1+i)).innerHTML=hel[i];
+      currentIndex=1;
+      for(var i=1;i<11;i++)
+         document.getElementById("actual"+i).innerHTML=hel[i-1];
 
   $("#btnContinue").click(function() {
     currentIndex++;
     $('.carousel').carousel('next');
 
+  });
+
+  $('select').on('change', function() {
+        currentIndex++;
+    $('.carousel').carousel('next');    
   });
 });
 
@@ -144,19 +248,19 @@ function validate(googleOutput){
   var actual = hel[currentIndex];
   console.log("actual="+actual);
   console.log("google output"+googleOutput);
-  document.getElementById("result"+(1+currentIndex)).innerHTML=googleOutput;
+  document.getElementById("result"+currentIndex).innerHTML=googleOutput;
   var seconds_left = 10;
   if(googleOutput==actual){
     console.log("succeess");
     if(currentIndex==3)
-      document.getElementById("status"+(1+currentIndex)).innerHTML="Congratulations..";
+      document.getElementById("status"+currentIndex).innerHTML="Congratulations..";
     else
-      document.getElementById("status"+(1+currentIndex)).innerHTML="You are right, Be prepared for next round..";
+      document.getElementById("status"+currentIndex).innerHTML="You are right, Be prepared for next round..";
     var timer = setInterval(function(){ 
-      document.getElementById("timer"+(1+currentIndex)).innerHTML = --seconds_left;
+      document.getElementById("timer"+currentIndex).innerHTML = --seconds_left;
       if (seconds_left <= 0)
       {
-         document.getElementById("timer"+(1+currentIndex)).innerHTML = "You are Ready!";
+         document.getElementById("timer"+currentIndex).innerHTML = "You are Ready!";
          //clearInterval(interval);
          currentIndex++;
          $('.carousel').carousel('next');
@@ -165,7 +269,7 @@ function validate(googleOutput){
      }, 1000);
   }else{
     console.log("game over!");
-    var id = "status"+(1+currentIndex);
+    var id = "status"+currentIndex;
     document.getElementById(id).innerHTML="<span>GAME OVER</span>";
     $("#"+id).addClass( 'game-over' );
   }
