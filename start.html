@@ -162,9 +162,10 @@ function selectActivity(choice) {
   $('#langSelectionDiv').show();
 }
 
-function next(language_code) {
+function next(language_code, language_name) {
   console.log("language: "+language_code);  
   localStorage["language_code"] = language_code;
+  $("#language").text(language_name);
 }
 
 function goToComplexityMeasures() {
@@ -185,6 +186,7 @@ function goToWordGame() {
   form.submit();
 }
 
+
 </script>
 </head>
 <body class="bodyGradient">
@@ -193,18 +195,18 @@ function goToWordGame() {
         <div class="" style="text-align: center;">
            <div class="row"> 
            <div class="col s10 offset-s1" >    
-           <span class="cardHeadingTxt">Select a language
-           </span>
-	         <ul id = "dropdown" class = "dropdown-content">
-	         <li><a href = "#" onclick="next('kn-IN')">Kannada</a></li>
-	         <li><a href = "#!" onclick="next('te-IN')">Telugu</a></li>
-	         <li><a href = "#" onclick="next('hi-IN')">हिन्दी - Hindi</a></li>
-	         </ul> 
+             <span class="cardHeadingTxt">Select a language
+             </span>
+  	         <ul id = "dropdown" class = "dropdown-content">
+  	         <li><a href = "#" onclick="next('kn-IN','Kannada')">Kannada</a></li>
+  	         <li><a href = "#!" onclick="next('te-IN','Telugu')">Telugu</a></li>
+  	         <li><a href = "#" onclick="next('hi-IN','हिन्दी - Hindi')">हिन्दी - Hindi</a></li>
+  	         </ul> 
            </div>
            </div>
 	         <div class="row margin-top-10"> 
 	           <div class="col s10 offset-s1" >    
-	      	    <a class = "btn dropdown-button" href = "#" data-activates = "dropdown">Language
+	      	    <a id='language' class = "btn dropdown-button" href = "#" data-activates = "dropdown">Languages
 	             <i class = "mdi-navigation-arrow-drop-down right"></i>
               </a>	
              </div>
