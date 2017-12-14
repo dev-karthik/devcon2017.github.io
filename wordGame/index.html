@@ -8,7 +8,7 @@
       <script type = "text/javascript"
          src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
       <script src = "./js/materialize.min.js"></script>
-      <script src = "./js/googleaudio.js"></script>
+      <script src="./js/collections/collections.min.js">
 <style type="text/css">
   .game-over {
   position: absolute;
@@ -157,7 +157,7 @@ function validate(googleOutput){
       if (seconds_left <= 0)
       {
          document.getElementById("timer"+(1+currentIndex)).innerHTML = "You are Ready!";
-         clearInterval(interval);
+         //clearInterval(interval);
          currentIndex++;
          $('.carousel').carousel('next');
          clearTimeout(timer);
