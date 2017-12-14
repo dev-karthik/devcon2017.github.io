@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>The Materialize Example</title>  
+      <title>Tongue Twister</title>  
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
       <meta http-equiv="cache-control" content="max-age=0" />
       <meta http-equiv="cache-control" content="no-cache" />
       <meta http-equiv="Cache-Control" content="no-store" />
       <meta http-equiv="pragma" content="no-cache" />
+
       <link rel = "stylesheet"
          href = "https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel = "stylesheet" href = "./css/materialize.css">
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">-->
+      <link rel="stylesheet" href="css/style.css">
       <script type = "text/javascript"
          src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
       <script src = "./js/materialize.min.js"></script>
@@ -56,6 +60,11 @@
     100% { transform: rotate(2deg) scale(1.15)}
   }
 
+.smiling_face:after {
+content: '\1f603';
+color:#ffffff; /* yellow: not enough contrast with white background */
+}
+
 </style>
    </head>
   
@@ -76,17 +85,17 @@
     <div class="carousel-item teal lighten-2 white-text" href="#one!">
       <h1 class="center"><div id="actual1"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(1)"><i class = "material-icons"><img id="start_img1" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result1"></div></h3>
+      <h3><span id="result1"></span></h3>
       <br>
       <br>
       <br>
       <h2><div id="status1"></div></h2>
         <div id="timer1"></div>
     </div>
-    <div class="carousel-item amber ligthen-2 white-text" href="#two!">
+    <div class="carousel-item  grey ligthen-2 white-text" href="#two!">
       <h1 class="center"><div id="actual2"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(2)"><i class = "material-icons"><img id="start_img2" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result2"></div></h3>
+      <h3><div id="result2"></div></h3>
       <br>
       <br>
       <br>
@@ -96,17 +105,17 @@
     <div class="carousel-item yellow white-text" href="#three!">
       <h1 class="center"><div id="actual3"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(3)"><i class = "material-icons"><img id="start_img3" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result3"></div></h3>
+      <h3><div id="result3"></div></h3>
       <br>
       <br>
       <br>
       <h2><div id="status3"></div></h2>
       <div id="timer3"></div>
     </div>
-    <div class="carousel-item deep-orange white-text" href="#four!">
+    <div class="carousel-item green accent-2 white-text" href="#four!">
       <h1 class="center"><div id="actual4"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(4)"><i class = "material-icons"><img id="start_img4" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result4"></div></h3>
+      <h3><div id="result4"></div></h3>
       <br>
       <br>
       <br>
@@ -116,17 +125,17 @@
     <div class="carousel-item blue-grey white-text" href="#five!">
       <h1 class="center"><div id="actual5"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(5)"><i class = "material-icons"><img id="start_img5" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result5"></div></h3>
+      <h3><div id="result5"></div></h3>
       <br>
       <br>
       <br>
       <h2><div id="status5"></div></h2>
       <div id="timer5"></div>
     </div>
-    <div class="carousel-item grey white-text" href="#six!">
+    <div class="carousel-item deep-orange white-text" href="#six!">
       <h1 class="center"><div id="actual6"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(6)"><i class = "material-icons"><img id="start_img6" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result6"></div></h3>
+      <h3><div id="result6"></div></h3>
       <br>
       <br>
       <br>
@@ -136,7 +145,7 @@
     <div class="carousel-item lime white-text" href="#seven!">
       <h1 class="center"><div id="actual7"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(7)"><i class = "material-icons"><img id="start_img7" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result7"></div></h3>
+      <h3><div id="result7"></div></h3>
       <br>
       <br>
       <br>
@@ -147,7 +156,7 @@
     <div class="carousel-item cyan white-text" href="#eight!">
       <h1 class="center"><div id="actual8"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(8)"><i class = "material-icons"><img id="start_img8" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result8"></div></h3>
+      <h3><div id="result8"></div></h3>
       <br>
       <br>
       <br>
@@ -157,7 +166,7 @@
     <div class="carousel-item deep-purple white-text" href="#nine!">
       <h1 class="center"><div id="actual9"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(9)"><i class = "material-icons"><img id="start_img9" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result9"></div></h3>
+      <h3><div id="result9"></div></h3>
       <br>
       <br>
       <br>
@@ -167,22 +176,12 @@
     <div class="carousel-item blue white-text" href="#ten!">
       <h1 class="center"><div id="actual10"></div></h1>
       <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(10)"><i class = "material-icons"><img id="start_img10" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result10"></div></h3>
+      <h3><div id="result10"></div></h3>
       <br>
       <br>
       <br>
       <h2><div id="status10"></div></h2>
-        <div id="timer10"></div>
     </div>
-    <div class="carousel-item green white-text" href="#eleven!">
-      <h1 class="center"><div id="actual11"></div></h1>
-      <button id="start_button" class="btn-floating btn-large white" onclick="toggleStartStop(11)"><i class = "material-icons"><img id="start_img11" src="./robo/mic1.png" alt="Start" height="45" width="45"></i></button>
-      <h3>Voice 2 Text: <div id="result11"></div></h3>
-      <br>
-      <br>
-      <br>
-      <h2><div id="status11"></div></h2>
-    </div>   
   </div>
 </body>
 </html>
@@ -215,7 +214,7 @@ function toggleStartStop(index) {
     document.getElementById("start_img"+index).src='./robo/mic1.png';
     reset();
   } else {
-    recognition.lang = "hi-IN";
+    recognition.lang = localStorage["language_code"];
     console.log(recognition.lang);
     recognition.start();
     document.getElementById("start_img"+index).src='./robo/mic3.png';
@@ -224,42 +223,61 @@ function toggleStartStop(index) {
   }
 }
 
-  var hel = Array('हाथी','बिल्ली','माउस','मकान','माउस','मकान','माउस','मकान','माउस','मकान');
+  
+  var hi_data = [["निर्ममता","अभ्रक","स्वच्छ","विध्वंसक","सृस्टीकर्ता"],["घर","मैदान","युद्ध","साहस","तीर्थयात्रा","संवेदनशील"],["अन्यमनस्कता","अभियांत्रिकी","भग्नावशेष","अट्टालिका","उड्डयन","नैसर्गिक"],["प्रारब्ध","क्षितिज","अक्षुण्य","कर्तव्यनिष्ठा","पर्याप्तता","संक्षिप्त"],["अहर्ता","क्रंदन","प्रद्युम्न","ओझल","ह्रास"],["संकर्षण","कृतघ्नता","जिजीविषा","धृष्टता","व्यवस्थापना"],["द्रव्यवाचक","फलस्वरूप","उच्चारित","कूदना","सहभागिता"],["उन्मूलन","मुख्यमंत्री","आविष्कार","क्षडिक","भंगुर"],["परंपरापुष्ट","आत्मसयम","सहजता","संकीर्ण"],["प्राग्ज्योतिष","उपद्रवी","दुर्भाग्य","निषठुरता","दृढ़निश्चयी"]];
+  var ka_data = [['हाथी'],['बिल्ली'],['माउस'],['मकान'],['माउस'],['मकान'],['माउस'],['मकान'],['माउस'],['मकान']];
+  var te_data = [['हाथी'],['बिल्ली'],['माउस'],['मकान'],['माउस'],['मकान'],['माउस'],['मकान'],['माउस'],['मकान']];
+ 
+  var lang_data = {"hi-IN":hi_data,"kn-IN":ka_data,"te-IN":te_data};
+
   var currentIndex=0;
     $(document).ready(function() {
+
+      var language_code = localStorage["language_code"];
+      var data = lang_data[language_code];
+      
+
       $('select').material_select();
       $('.carousel').carousel();
       $('.carousel').carousel('set', "#one!");
+      
       currentIndex=1;
-      for(var i=1;i<11;i++)
-         document.getElementById("actual"+i).innerHTML=hel[i-1];
+      for(var i=0;i<data.length;i++){
+        var indexData = data[i];
+        var randomindex = Math.floor(Math.random() * indexData.length);
+        console.log("randomindex="+randomindex);
+        document.getElementById("actual"+(i+1)).innerHTML=indexData[randomindex];
+      }
+         
 
-  $("#btnContinue").click(function() {
-    currentIndex++;
-    $('.carousel').carousel('next');
-
-  });
-
-  $('select').on('change', function() {
+      $("#btnContinue").click(function() {
         currentIndex++;
-    $('.carousel').carousel('next');    
+        $('.carousel').carousel('next');
+
+      });
+
+      $('select').on('change', function() {
+            currentIndex++;
+        $('.carousel').carousel('next');    
+      });
   });
-});
 
 function validate(googleOutput){
   console.log("validate");
   console.log(currentIndex); 
-  var actual = hel[currentIndex-1];
+  var actual = document.getElementById("actual"+currentIndex).innerHTML;
   console.log("actual="+actual);
   console.log("google output"+googleOutput);
-  document.getElementById("result"+currentIndex).innerHTML=googleOutput;
-  var seconds_left = 10;
+  document.getElementById("result"+currentIndex).innerHTML="Voice 2 Text: "+googleOutput;
+  var seconds_left = 5;
   if(googleOutput==actual){
     console.log("succeess");
-    if(currentIndex==3)
+    if(currentIndex==10)
       document.getElementById("status"+currentIndex).innerHTML="Congratulations! You passed all levels";
-    else
-      document.getElementById("status"+currentIndex).innerHTML="Wow, Nice try! WAIT";
+    else{
+      document.getElementById("status"+currentIndex).innerHTML="<span class='smiling_face'></span> Wow, Nice try! WAIT";
+
+    }
     var timer = setInterval(function(){ 
       document.getElementById("timer"+currentIndex).innerHTML = --seconds_left;
       if (seconds_left <= 0)
@@ -270,7 +288,7 @@ function validate(googleOutput){
          $('.carousel').carousel('next');
          clearTimeout(timer);
       }    
-     }, 1000);
+     }, 500);
   }else{
     console.log("game over!");
     var id = "status"+currentIndex;
@@ -278,5 +296,4 @@ function validate(googleOutput){
     $("#"+id).addClass( 'game-over' );
   }
 }
-
 </script>
